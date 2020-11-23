@@ -11,3 +11,37 @@ Set image:
     Cac file cần chỉnh:
     book controller, book_params:
         params.require(:book).permit(:title, :number_of_pages, :image)
+        
+Thêm trường name và age:
+    db -> migrate
+    chỉnh trong file file add_name and age:
+    
+class AddNameAndAge < ActiveRecord::Migration[6.0]
+  def change
+    add_column :users, :name, :string
+    add_column :users, :age, :integer
+    add_index :users, :name, unique: true
+  end
+end
+
+Trong models -> user.rb
+  validates_presence_of :name
+  validates_presence_of :age
+
+
+application controller:
+class ApplicationController < ActionController::Base
+	before_action :configure_permitted_parameters, if: :devise_controller?
+
+      protected
+         def configure_permitted_parameters
+             devise_parameter_sanitizer.permit :sign_up, keys: [:name, :age, :avatar]
+             devise_parameter_sanitizer.permit :account_update, keys: [:name, :age, :avatar]
+         end
+end
+
+class UsersController < ApplicationController
+  def show
+    @user = current_user
+  end
+end
