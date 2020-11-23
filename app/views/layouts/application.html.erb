@@ -15,7 +15,7 @@
       <% end %>
       
       <% if user_signed_in? %>
-        <p>こんにちわ、<%= link_to current_user.email %> </p>
+        <p>こんにちわ、<%= link_to current_user.email, users_show_path %> </p>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       <% else %>
         <%- if controller_name != 'registrations' %>
@@ -27,6 +27,7 @@
         <% end %>
       <% end %>
       <hr>
+      
     <%= yield %>
 
   </body>
