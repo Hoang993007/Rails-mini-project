@@ -1,5 +1,21 @@
-<a href="#" target="_blank">サインイン</a>
-<a href="#" target="_blank">ユーザ登録</a>
+<%=
+    unless current_user
+        link_to "サインイン", new_user_session_path
+        link_to "ユーザ登録", new_user_registration_path
+    else
+        p "こんにちわ #{current_user.email}"
+        link_to "ログアウト", destroy_user_session_path
+    end
+
+%>
 <hr>
 <h1>HOME PAGE</h1>
-<%= link_to "本一覧をみる", books_path %>
+
+<%=
+    unless current_user
+
+    else
+        link_to "本一覧をみる", books_path
+    end
+
+%>
