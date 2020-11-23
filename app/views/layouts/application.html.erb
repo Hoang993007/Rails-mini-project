@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Thefirstrails</title>
+    <title>Books</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,24 @@
   </head>
 
   <body>
+      <%- if controller_name != 'static_pages' %>
+        <%= link_to "ホーム", root_path %>
+      <% end %>
+      
+      <% if user_signed_in? %>
+        <p>こんにちわ、<%= link_to current_user.email %> </p>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%- if controller_name != 'registrations' %>
+          <%= link_to "サインイン", new_user_registration_path %>
+        <% end %>
+        
+        <%- if controller_name != 'sessions' %>
+          <%= link_to "ユーザ登録", new_user_session_path %>
+        <% end %>
+      <% end %>
+      <hr>
     <%= yield %>
+
   </body>
 </html>

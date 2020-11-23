@@ -1,2 +1,13 @@
 1. Chu y loi thay giang
 2. rake routes de tim routes, sau do ung routes do voi link_to
+
+In book controller:
+    before_action :authenticate_user!
+
+To generate log_out:  
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        
+Set image:
+    Cac file cần chỉnh:
+    book controller, book_params:
+        params.require(:book).permit(:title, :number_of_pages, :image)
