@@ -1,5 +1,9 @@
 <h1>プロフィール</h1>
+   <% if @current_user.avatar.attached? %>
+     <%= image_tag @current_user.avatar %>
+   <% end %>
 <div><%= current_user.name %></div>
 <div><%= current_user.age %></div>
 <h2>メールアドレス</h2>
 <div><%= current_user.email %></div>
+ <%= link_to "Change info", edit_user_registration_path %>

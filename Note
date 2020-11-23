@@ -45,3 +45,13 @@ class UsersController < ApplicationController
     @user = current_user
   end
 end
+
+
+avatar:
+models -> user.rb
+    has_one_attached :avatar
+    
+    <h1>プロフィール</h1>
+   <% if @current_user.avatar.attached? %>
+     <%= image_tag @current_user.avatar %>
+   <% end %>
