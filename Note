@@ -121,3 +121,13 @@ In views/book/show
     <% end %>
 </ul>
   ---------------------------------------------
+  
+add name to review list
+
+model/book
+class BookReview < ApplicationRecord
+    belongs_to :user
+end
+
+In book_view controller
+    @book_review.user_id = current_user.id
