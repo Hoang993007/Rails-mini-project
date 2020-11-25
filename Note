@@ -55,3 +55,17 @@ models -> user.rb
    <% if @current_user.avatar.attached? %>
      <%= image_tag @current_user.avatar %>
    <% end %>
+   
+   ----------------------------------
+   Thêm trường detail:
+   In migrate: add file - file will add new colulmn
+   add_column :books, :detail, :text
+   
+   In book controller:
+    params.require(:book).permit(:title, :number_of_pages, :detail, :image)
+
+   Nếu thêm trường mới mà ko đc (trong schema nó không hiển thị) => xóa database đi thử lại
+   rails db:drop
+   rails db:create
+   rails db:migrate
+    ----------------------------------
