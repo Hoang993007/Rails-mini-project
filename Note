@@ -76,4 +76,48 @@ models -> user.rb
     @book_review = BookReview.new
   end
   
+  Trong file book/show:
+   <h2>Review Form</h2>
+ <%= form_with(model: @book_review, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :review %>
+    <%= form.text_area :review %>
+    
+    <%=form.hidden_field :book_id, :value => @book.id %>
+  </div>
   ---------------------------------
+  
+  Giờ để hiển thị tất cả các review không phải hiện thị trên đường dẫn @book_review nữa
+  Mà hiển thị trên đường dẫn của cuốn sách đó:         url = "/books/" + @book_review.book_id.to_s
+  
+    def create
+    @book_review = BookReview.new(book_review_params)
+
+    respond_to do |format|
+      if @book_review.save
+        url = "/books/" + @book_review.book_id.to_s
+        format.html { redirect_to url, notice: 'Book review was successfully created.' }
+        format.json { render :show, status: :created, location: @book_review }
+      else
+        format.html { render :new }
+        format.json { render json: @book_review.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+In model/book:  
+  has_many :book_review, -> { order "created_at DESC" }
+  => 1 book có nhiều book_review, sắp xếp theo DES
+
+In views/book/show
+  <h2>Review List</h2>
+<ul>
+    <% @book.book_review.each do |book_review| %>
+    <li>
+        <%= book_review.review %>
+        (<i><%= book_review.user.id %></i>)
+    </li>
+    <% end %>
+</ul>
+  ---------------------------------------------
