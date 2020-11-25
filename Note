@@ -69,3 +69,11 @@ models -> user.rb
    rails db:create
    rails db:migrate
     ----------------------------------
+    
+    Về cách thêm book review:
+    In book controller:
+    def show
+    @book_review = BookReview.new
+  end
+  
+  ---------------------------------
