@@ -1,0 +1,29 @@
+<style>
+#show-image img {
+  max-width: 500px;
+}
+</style>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h2><%= @photo.title %></h2>
+</p>
+
+<p>     
+    <span id="show-image"><%= image_tag @photo.image %></span>
+ </p>
+ 
+ <p>
+  <strong>Date:</strong>
+  <%= @photo.date %>
+</p>
+
+<p>
+  <strong>Detail</strong>
+  <br />
+  <textarea disabled style="resize: none; border-radius: 5px; width: 300px; min-height: 100px"><%= @photo.detail %></textarea>
+</p>
+
+<button><%= link_to 'Edit', edit_photo_path(@photo) %></button> |
+<button><%= link_to 'Back', photos_path %></button>

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Books</title>
+    <title>Photo manager application</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    
+     </head>
 
   <body>
       <%- if controller_name != 'static_pages' %>
@@ -15,8 +16,8 @@
       <% end %>
       
       <% if user_signed_in? %>
-        <p>こんにちわ、<%= link_to current_user.name, users_show_path %> </p>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+         <p>こんにちわ、<%= link_to current_user.name, users_show_path %> </p>
       <% else %>
         <%- if controller_name != 'registrations' %>
           <%= link_to "ユーザ登録", new_user_registration_path %>
