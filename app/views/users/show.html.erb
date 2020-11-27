@@ -1,9 +1,24 @@
+<style>
+    #profile-img img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border-style: solid;
+        border-width: 2px;
+        border-color: gray;
+        background-size: cover;
+    }
+</style>
+
 <h1>プロフィール</h1>
    <% if @current_user.avatar.attached? %>
-     <%= image_tag @current_user.avatar %>
+     <span id="profile-img"><%= image_tag @current_user.avatar %></span>
    <% end %>
 <div><%= current_user.name %></div>
-<div><%= current_user.age %></div>
+<div><strong>Age: </strong></span><%= current_user.age %></div>
+<hr />
 <h2>メールアドレス</h2>
 <div><%= current_user.email %></div>
- <%= link_to "Change info", edit_user_registration_path %>
+<hr />
+<br>
+ <button><%= link_to "Change info", edit_user_registration_path %></button>
