@@ -11,7 +11,7 @@
 </p>
 
 <p>     
-    <span id="show-image"><%= image_tag @photo.image %></span>
+    <span id="show-image"> <%= image_tag @photo.image %></span>
  </p>
  
  <p>
@@ -25,5 +25,24 @@
   <textarea disabled style="resize: none; border-radius: 5px; width: 300px; min-height: 100px"><%= @photo.detail %></textarea>
 </p>
 
+<h2>Review</h2>
+<%= form_with(model: @photo_review, local: true) do |form| %>
+  <div class= "field">
+    <%= form.text_area :review %>
+    <%= form.hidden_field :photo_id, :value => @photo.id %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+ 
+<h2>Review List</h2>
+     <ul>
+       <% @photo.photo_review.each do |photo_review|%>
+        <li><%= photo_review.review %>
+          (<b><%= photo_review.user.name %></b>)</li>
+     <% end %>
+     </ul>
+ 
 <button><%= link_to 'Edit', edit_photo_path(@photo) %></button> |
 <button><%= link_to 'Back', photos_path %></button>
