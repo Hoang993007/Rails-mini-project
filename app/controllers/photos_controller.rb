@@ -13,20 +13,22 @@ class PhotosController < ApplicationController
   def show
     @photo_review = PhotoReview.new
   end
-
   # GET /photos/new
   def new
     @photo = Photo.new
+    @album = Album.all.map{ |alb| [alb.id] }
   end
 
   # GET /photos/1/edit
   def edit
+     @album = Album.all.map{ |alb| [alb.id] }
   end
 
   # POST /photos
   # POST /photos.json
   def create
     @photo = Photo.new(photo_params)
+    @photo.album_id = params[:album_id]
 
     respond_to do |format|
       if @photo.save
@@ -42,6 +44,8 @@ class PhotosController < ApplicationController
   # PATCH/PUT /photos/1
   # PATCH/PUT /photos/1.json
   def update
+    puts "this is #{params}"
+    @photo.album_id =params[:album_id]
     respond_to do |format|
       if @photo.update(photo_params)
         format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
@@ -71,6 +75,6 @@ class PhotosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def photo_params
-      params.require(:photo).permit(:title, :date, :image, :detail)
+      params.require(:photo).permit(:title, :date, :image, :detail, :album_id)
     end
 end

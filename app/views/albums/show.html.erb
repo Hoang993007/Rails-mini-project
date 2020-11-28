@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+<style>
+#index-view-image img {
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  max-width: 100px;
+  max-height: 100px;
+}
+</style>
+<p>
+  <strong>User:</strong>
+  <%= @album.user_id %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @album.name %>
+</p>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Date</th>
+      <th>Detail</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @photos.each do |photo| %>
+      <tr>
+        <td>
+          <span id="index-view-image"><%= image_tag(photo.image) %></span>
+        </td>
+        <td><%= photo.title %></span></td>
+        <td><%= photo.date %></td>
+        <td><%= photo.detail %></td>
+      </tr>
+      <tr>
+        <td>
+          <button><%= link_to 'Show', photo %></button>
+          <button><%= link_to 'Edit', edit_photo_path(photo) %></button>
+          <button><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p>
+  <strong>Review:</strong>
+  <%= @album.review %>
+</p>
+
+<%= link_to 'Edit', edit_album_path(@album) %> |
+<%= link_to 'Back', albums_path %>
