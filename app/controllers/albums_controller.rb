@@ -13,6 +13,7 @@ class AlbumsController < ApplicationController
     @id = @album.id
     puts @id
     @photos = Photo.where("album_id = ?" , @id)
+    @album_review = AlbumReview.new
   end
 
   # GET /albums/new
@@ -72,6 +73,6 @@ class AlbumsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def album_params
-      params.require(:album).permit(:user_id, :review, :name)
+      params.require(:album).permit(:user_id, :name)
     end
 end
