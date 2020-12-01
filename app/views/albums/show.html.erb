@@ -11,7 +11,7 @@
 <button><%= link_to 'Add Photo', new_photo_path %></button>
 <p>
   <strong>User:</strong>
-  <%= @album.user_id %>
+  <%= @album.user.name %>
 </p>
 <p>
   <strong>Name:</strong>
@@ -67,7 +67,7 @@
      <ul>
        <% @album.album_review.each do |album_review|%>
         <li><%= album_review.review %>
-          (<i><%= album_review.user_id%></i>)
+          (<i><%= album_review.user.name%></i>)
         </li>
 
      <% end %>
