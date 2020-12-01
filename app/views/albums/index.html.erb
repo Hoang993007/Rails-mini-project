@@ -15,7 +15,8 @@
   <thead>
     <tr>
       <th>User</th>
-      <th>Review</th>
+      <th>Name</th>
+      <!--<th>Review</th>-->
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,7 +25,8 @@
       <% @albums.each do |album| %>
         <tr>
           <td><%= album.user_id %></td>
-          <td><%= album.review %></td>
+          <td><%= album.name %></td>
+          <!--<td><%= album.review %></td>-->
           <td><%= link_to 'Show', album %></td>
           <td><%= link_to 'Edit', edit_album_path(album) %></td>
           <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
